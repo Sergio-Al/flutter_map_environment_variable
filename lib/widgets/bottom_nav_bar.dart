@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tarea_map/screens/config_info_screen.dart';
 import 'package:tarea_map/widgets/nav_item.dart';
 
 class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -26,8 +29,27 @@ class BottomNavBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                NavItem(icon: Icons.explore, label: 'Explorar', isActive: true),
-                NavItem(icon: Icons.settings, label: 'Configuración', isActive: false),
+                NavItem(
+                  icon: Icons.explore,
+                  label: 'Explorar',
+                  isActive: true,
+                  onTap: () {
+                    // Already on map screen
+                  },
+                ),
+                NavItem(
+                  icon: Icons.settings,
+                  label: 'Configuración',
+                  isActive: false,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ConfigInfoScreen(),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
