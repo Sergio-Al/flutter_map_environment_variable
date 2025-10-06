@@ -96,7 +96,7 @@ class _MapScreenState extends State<MapScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const Text(
-                              'Select Map Type',
+                              'Seleccionar tipo de mapa',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -117,7 +117,7 @@ class _MapScreenState extends State<MapScreen> {
                               },
                             ),
                             ListTile(
-                              title: const Text('Satellite'),
+                              title: const Text('Satélite'),
                               leading: const Icon(Icons.satellite),
                               onTap: () {
                                 _changeMapType(MapType.satellite);
@@ -125,7 +125,7 @@ class _MapScreenState extends State<MapScreen> {
                               },
                             ),
                             ListTile(
-                              title: const Text('Hybrid'),
+                              title: const Text('íbrido'),
                               leading: const Icon(Icons.layers),
                               onTap: () {
                                 _changeMapType(MapType.hybrid);
@@ -134,7 +134,7 @@ class _MapScreenState extends State<MapScreen> {
                               },
                             ),
                             ListTile(
-                              title: const Text('Terrain'),
+                              title: const Text('Terreno'),
                               leading: const Icon(Icons.terrain),
                               selected: _currentMapType == MapType.terrain,
                               onTap: () {
@@ -188,6 +188,8 @@ class _MapScreenState extends State<MapScreen> {
                   _showDetails = false;
                 });
               },
+              latitude: _center.latitude.toStringAsFixed(6),
+              longitude: _center.longitude.toStringAsFixed(6),
             ),
         ],
       ),

@@ -3,10 +3,14 @@ import 'package:tarea_map/widgets/detail_row.dart';
 
 class LocationDetailsSheet extends StatelessWidget {
   final VoidCallback onClose;
+  final String latitude;
+  final String longitude;
 
   const LocationDetailsSheet({
     super.key,
     required this.onClose,
+    required this.latitude,
+    required this.longitude,
   });
 
   @override
@@ -59,14 +63,14 @@ class LocationDetailsSheet extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Deep forest',
+                          'La Paz, Bolivia',
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          '34°45\'00.2" N, -103°45\'58.0" W',
+                          '$latitude, $longitude',
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.grey.shade600,
@@ -90,11 +94,11 @@ class LocationDetailsSheet extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    flex: 2,
+                    flex: 1,
                     child: ElevatedButton.icon(
                       onPressed: () {},
                       icon: const Icon(Icons.navigation, size: 18),
-                      label: const Text('Navigate'),
+                      label: const Text('Ir'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black87,
                         foregroundColor: Colors.white,
@@ -111,9 +115,9 @@ class LocationDetailsSheet extends StatelessWidget {
                     child: OutlinedButton.icon(
                       onPressed: () {},
                       icon: const Icon(Icons.share, size: 18),
-                      label: const Text('Share'),
+                      label: const Text('Compartir', overflow: TextOverflow.ellipsis,),
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 2),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -125,7 +129,7 @@ class LocationDetailsSheet extends StatelessWidget {
                   OutlinedButton.icon(
                     onPressed: () {},
                     icon: const Icon(Icons.edit, size: 18),
-                    label: const Text('Edit'),
+                    label: const Text('Editar'),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                       shape: RoundedRectangleBorder(
@@ -141,7 +145,7 @@ class LocationDetailsSheet extends StatelessWidget {
 
               // ABOUT SECTION
               const Text(
-                'About',
+                'Acerca de',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -178,7 +182,7 @@ class LocationDetailsSheet extends StatelessWidget {
 
               // DESCRIPTION TEXT
               Text(
-                'The map features detailed information for the 39 Discovery Points that are marked on the map. Also included are visitor rules and regulations, safety tips, and SOS contacts.',
+                'La mapa presenta información detallada sobre los 39 Puntos de Descubrimiento que están marcados en el mapa. También se incluyen reglas y regulaciones para los visitantes, consejos de seguridad y contactos de SOS.',
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.grey.shade700,
@@ -190,7 +194,7 @@ class LocationDetailsSheet extends StatelessWidget {
 
               // DETAILS SECTION
               const Text(
-                'Details',
+                'Detalles',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
