@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -5,10 +8,31 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// load .env file from project root
+val envFile = File(project.rootProject.projectDir.parentFile, ".env")
+val envProperties = Properties()
+if (envFile.exists()) {
+    envProperties.load(FileInputStream(envFile))
+    println("✓ Loaded .env file from ${envFile.absolutePath}")
+} else {
+    println("Warning: Environment file .env not found at ${envFile.absolutePath}")
+    println("Using empty API key as fallback")
+}
+
+val googleMapsApiKey = envProperties.getProperty("GOOGLE_MAPS_API_KEY", "")
+
+if (googleMapsApiKey.isEmpty()) {
+    println("Warning: GOOGLE_MAPS_API_KEY is not set in the .env file.")
+    println("Make sure to set it to avoid runtime issues.")
+} else {
+    println("✓ GOOGLE_MAPS_API_KEY loaded from .env file.")
+}
+
+
 android {
     namespace = "com.example.tarea_map"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -28,6 +52,8 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        manifestPlaceholders["googleMapsApiKey"] = googleMapsApiKey
     }
 
     buildTypes {
